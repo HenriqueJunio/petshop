@@ -9,15 +9,20 @@ import org.springframework.stereotype.Component;
 
 import com.henrique.petshop.domain.Categoria;
 import com.henrique.petshop.domain.Cidade;
+import com.henrique.petshop.domain.Cliente;
+import com.henrique.petshop.domain.Endereco;
 import com.henrique.petshop.domain.Especie;
 import com.henrique.petshop.domain.Estado;
+import com.henrique.petshop.domain.Funcionario;
 import com.henrique.petshop.domain.Pet;
 import com.henrique.petshop.domain.Produto;
 import com.henrique.petshop.domain.Raca;
 import com.henrique.petshop.repository.CategoriaRepository;
 import com.henrique.petshop.repository.CidadeRepository;
+import com.henrique.petshop.repository.EnderecoRepository;
 import com.henrique.petshop.repository.EspecieRepository;
 import com.henrique.petshop.repository.EstadoRepository;
+import com.henrique.petshop.repository.PessoaRepository;
 import com.henrique.petshop.repository.PetRepository;
 import com.henrique.petshop.repository.ProdutoRepository;
 import com.henrique.petshop.repository.RacaRepository;
@@ -26,25 +31,31 @@ import com.henrique.petshop.repository.RacaRepository;
 public class PopulaDados {
 	@Autowired
 	CategoriaRepository categoriaRepository;
-	
+
 	@Autowired
 	ProdutoRepository produtoRepository;
-	
+
 	@Autowired
 	EspecieRepository especieRepository;
-	
+
 	@Autowired
 	RacaRepository racaRepository;
-	
+
 	@Autowired
 	PetRepository petRepository;
-	
+
 	@Autowired
 	EstadoRepository estadoRepository;
-	
+
 	@Autowired
 	CidadeRepository cidadeRepository;
-	
+
+	@Autowired
+	PessoaRepository pessoaRepository;
+
+	@Autowired
+	EnderecoRepository enderecoRepository;
+
 	@PostConstruct
 	public void cadastrar() {
 		Categoria cat1 = new Categoria(null, "Alimento");
@@ -95,5 +106,18 @@ public class PopulaDados {
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente clt1 = new Cliente(null, "Jose Maria", "jose@mail.com", "335.194.320-21", "FISICA");
+		clt1.getTelefones().addAll(Arrays.asList("3516-2000","9191-0000"));
+		
+		Funcionario fnc1 = new Funcionario(null, "Maria Jose", "maria@mail.com", "551.872.200.12", "ATENDENTE");
+		fnc1.getTelefones().addAll(Arrays.asList("3279-0001","9090-0002"));
+		
+		Endereco end1 = new Endereco(null, "Rua Tupis", "500", "Apto 101", "Pindorama", "30111222", clt1, c1);
+		Endereco end2 = new Endereco(null, "Av. Tamoios", "100", "Casa", "Oca", "3968000", fnc1, c2);
+		Endereco end3 = new Endereco(null, "Rua Aranãs", "10", "Apto 201", "Centro", "01153000", fnc1, c3);
+		
+		pessoaRepository.saveAll(Arrays.asList(clt1, fnc1));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));
 	}
 }
