@@ -10,26 +10,26 @@ import com.henrique.petshop.domain.enuns.SituacaoPagamento;
 public class PagDinheiro extends Pagamento {
 	private static final long serialVersionUID = 1L;
 	
-	private Date dataPagamento;
-	private double desconto;
+	private Date dataVencimento;
+	private Double desconto;
 	
 	public PagDinheiro() {
 		
 	}
 
-	public PagDinheiro(Integer id, Double valor, SituacaoPagamento situacao, Servico servico, Date dataPagamento, Double desconto) {
+	public PagDinheiro(Integer id, Double valor, SituacaoPagamento situacao, Servico servico, Date dataVencimento, Double desconto) {
 		super(id, valor, situacao, servico);
-		this.dataPagamento = dataPagamento;
+		this.dataVencimento = dataVencimento;
 		this.desconto = desconto;
 		// TODO Auto-generated constructor stub
 	}
 
 	public Date getDataPagamento() {
-		return dataPagamento;
+		return dataVencimento;
 	}
 
-	public void setDataPagamento(Date dataPagamento) {
-		this.dataPagamento = dataPagamento;
+	public void setDataPagamento(Date dataVencimento) {
+		this.dataVencimento = dataVencimento;
 	}
 
 	public double getDesconto() {
