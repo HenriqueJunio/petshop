@@ -32,11 +32,11 @@ public class PagDinheiro extends Pagamento {
 		this.dataVencimento = dataVencimento;
 	}
 
-	public double getDesconto() {
+	public Double getDesconto() {
 		return desconto;
 	}
 
-	public void setDesconto(double desconto) {
+	public void setDesconto(Double desconto) {
 		this.desconto = desconto;
 	}
 }
