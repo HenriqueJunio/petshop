@@ -1,5 +1,6 @@
 package com.henrique.petshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class ServicoService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Servico possui produtos, não é possível deletar!");
 		}
-		
+	}
+	
+	public List<Servico> findAll() {
+		return repo.findAll();
 	}
 }
